@@ -1,0 +1,59 @@
+.field {
+  border: 3px solid black;
+  position: relative;
+}
+
+.tank {
+  position: absolute;
+}
+
+/* .user-tank {
+
+  box-sizing: border-box;
+
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  
+  border-bottom: 30px solid blue;
+} */
+
+.user-tank  {
+  background: blue;
+  display: inline-block;
+  height: 20px !important;
+  margin-top: 10px;
+  position: relative;
+  width: 30px !important;
+}
+
+.user-tank:before {
+  border-bottom: 10px solid blue;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 0;
+}
+
+.ai-tank {
+  background-color: black;
+}
+
+.shell {
+  position: absolute;
+  background-color: red;
+}
+
+.wall {
+  position: absolute;
+}
+
+.wall.brick {
+  background-color: brown;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
