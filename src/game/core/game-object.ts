@@ -14,6 +14,8 @@ export class GameObject {
   width: number;
   height: number;
   direction: Direction;
+  isNotPhysical: boolean;
+
   get boundaries(): Boundaries {
     return {
       topY: this.y - (this.height - 1) / 2,

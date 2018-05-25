@@ -68,6 +68,7 @@ export class AiTankLogicComponent implements LogicComponent {
   }
 
   private getHit(gameObject: GameObject, world: World) {
+    world.sendEvent(EventTypes.AiTankKilled);
     gameObject.destroy(world);
   }
 }

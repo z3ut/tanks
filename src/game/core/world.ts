@@ -10,6 +10,10 @@ export class World {
 
   gameObjects: GameObject[];
 
+  get physicalGameObjects(): GameObject[] {
+    return this.gameObjects.filter(g => !g.isNotPhysical);
+  }
+
   get boundaries(): Boundaries {
     return {
       topY: 0,
@@ -32,7 +36,7 @@ export class World {
   }
 
   findCollision(boundaries: Boundaries, gameObject?: GameObject): GameObject {
-    for (let g of this.gameObjects) {
+    for (let g of this.physicalGameObjects) {
       if (isCollided(boundaries, g.boundaries) && gameObject != g) {
         return g;
       }

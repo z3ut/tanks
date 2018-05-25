@@ -3,5 +3,6 @@ export enum EventTypes {
   Fire,
   Hit,
   Collision,
+  AiTankKilled,
   GameOver
 }
