@@ -6,8 +6,21 @@ import { LogicComponent } from './logic-component';
 import { EventTypes } from '../events/event-types';
 import { GraphicComponent } from './graphic-component';
 import { PhysicComponent } from './physic-component';
+import { Clonable } from './clonable';
 
-export class GameObject {
+export class GameObject implements Clonable<GameObject> {
+
+  clone(): GameObject {
+    const gameObject = new GameObject(this.inputComponent.clone(), this.logicComponent.clone(),
+      this.physicComponent.clone(), this.graphicComponent.clone());
+    gameObject.x = this.x;
+    gameObject.y = this.y;
+    gameObject.width = this.width;
+    gameObject.height = this.height;
+    gameObject.direction = this.direction;
+    gameObject.isNotPhysical = this.isNotPhysical;
+    return gameObject;
+  }
 
   x: number;
   y: number;

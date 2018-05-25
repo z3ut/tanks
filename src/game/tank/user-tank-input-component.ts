@@ -46,4 +46,8 @@ export class UserTankImportComponent implements InputComponent {
 
     this.lastKeyCode = -1;
   }
+
+  clone(): InputComponent {
+    return new UserTankImportComponent();
+  }
 }

@@ -21,4 +21,8 @@ export class BrickWallGraphicComponent implements GraphicComponent {
   destroy(gameObject: GameObject) {
     this.field.removeChild(this.wall);
   }
+
+  clone(): GraphicComponent {
+    return new BrickWallGraphicComponent(this.width, this.height, this.pxPerCoord);
+  }
 }

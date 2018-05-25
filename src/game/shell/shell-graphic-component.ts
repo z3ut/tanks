@@ -21,4 +21,8 @@ export class ShellGraphicComponent implements GraphicComponent {
   destroy(gameObject: GameObject) {
     this.field.removeChild(this.shell);
   }
+
+  clone(): GraphicComponent {
+    return new ShellGraphicComponent(this.width, this.height, this.pxPerCoord);
+  }
 }

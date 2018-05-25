@@ -5,12 +5,12 @@ import { Direction } from '../core/direction';
 
 export class AiTankImportComponent implements InputComponent {
 
+  
 
   constructor() {
   }
 
   update(gameObject: GameObject) {
-
     return;
     const action = Math.round(Math.random() * 100);
 
@@ -33,5 +33,9 @@ export class AiTankImportComponent implements InputComponent {
     if (40 <= action && action < 50) {
       gameObject.handleEvent(EventTypes.Fire);
     }
+  }
+
+  clone(): InputComponent {
+    return new AiTankImportComponent();
   }
 }

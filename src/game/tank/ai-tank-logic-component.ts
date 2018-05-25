@@ -9,7 +9,6 @@ import { Direction } from '../core/direction';
 
 export class AiTankLogicComponent implements LogicComponent {
 
-  
   private movingOptions: MoveEvent;
   private isFired: boolean;
   private isHitted: boolean;
@@ -40,6 +39,10 @@ export class AiTankLogicComponent implements LogicComponent {
   }
 
   destroy(gameObject: GameObject, world: World) {
+  }
+
+  clone(): LogicComponent {
+    return new AiTankLogicComponent(this.speed);
   }
 
   private fire(gameObject: GameObject, world: World) {

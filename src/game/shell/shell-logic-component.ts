@@ -47,4 +47,8 @@ export class ShellLogicComponent implements LogicComponent {
 
   destroy(gameObject: GameObject) {
   }
+
+  clone(): LogicComponent {
+    return new ShellLogicComponent(this.speed, this.direction);
+  }
 }

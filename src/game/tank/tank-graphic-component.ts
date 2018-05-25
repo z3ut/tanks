@@ -42,4 +42,8 @@ export class TankGraphicComponent implements GraphicComponent {
   destroy(gameObject: GameObject) {
     this.field.removeChild(this.tank);
   }
+
+  clone(): GraphicComponent {
+    return new TankGraphicComponent(this.width, this.height, this.pxPerCoord, this.cssClass);
+  }
 }

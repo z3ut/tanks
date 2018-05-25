@@ -33,6 +33,10 @@ export class BasicPhysicComponent implements PhysicComponent {
   destroy(gameObject: GameObject, world: World) {
   }
 
+  clone(): PhysicComponent {
+    return new BasicPhysicComponent(this.speed);
+  }
+
   private move(gameObject: GameObject, moveEvent: MoveEvent, world: World) {
     moveCommand.do(gameObject, { direction: moveEvent.direction, distance: this.speed, world  });
     this.movingOptions = null;

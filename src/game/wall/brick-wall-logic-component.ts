@@ -30,6 +30,10 @@ export class BrickWallLogicComponent implements LogicComponent {
   destroy(gameObject: GameObject, world: World) {
   }
 
+  clone(): LogicComponent {
+    return new BrickWallLogicComponent();
+  }
+
   private getHit(gameObject: GameObject, world: World) {
     gameObject.destroy(world);
   }

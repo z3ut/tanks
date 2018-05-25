@@ -36,14 +36,14 @@ userTank.direction = Direction.Top;
 world.gameObjects.push(userTank);
 
 
-// const aiTankInputComponent = new AiTankImportComponent();
-// const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
-// const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-// const aiTankGraphicComponent = new TankGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, 'ai-tank');
+const aiTankInputComponent = new AiTankImportComponent();
+const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
+const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
+const aiTankGraphicComponent = new TankGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, 'ai-tank');
 
-// const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
-// aiTank.width = settings.tankWidth;
-// aiTank.height = settings.tankHeight;
+const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
+aiTank.width = settings.tankWidth;
+aiTank.height = settings.tankHeight;
 
 // aiTank.x = Math.round(settings.fieldHeight / 2);
 // aiTank.y = 10;
@@ -59,8 +59,29 @@ brickWall.width = 1;
 brickWall.height = 1;
 world.gameObjects.push(brickWall);
 
-
-const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50), null, null);
+const spawnAreas = [
+  {
+    x: 10,
+    y: 10,
+    boundaries: {
+      topY: 9,
+      rightX: 11,
+      bottomY: 11,
+      leftX: 9
+    } 
+  },
+  {
+    x: 30,
+    y: 10,
+    boundaries: {
+      topY: 9,
+      rightX: 31,
+      bottomY: 11,
+      leftX: 29
+    } 
+  }
+];
+const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50, aiTank, spawnAreas), null, null);
 spawner.isNotPhysical = true;
 world.gameObjects.push(spawner);
 

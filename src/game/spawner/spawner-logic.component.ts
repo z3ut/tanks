@@ -11,6 +11,8 @@ import { AiTankLogicComponent } from '../tank/ai-tank-logic-component';
 import { TankGraphicComponent } from '../tank/tank-graphic-component';
 import { settings } from '../core/settings';
 import { Direction } from '../core/direction';
+import { Clonable } from '../core/clonable';
+import { SpawnArea } from './spawn-area';
 
 export class SpawnerLogicComponent implements LogicComponent {
 
@@ -18,34 +20,12 @@ export class SpawnerLogicComponent implements LogicComponent {
 
   private updatesTillNextSpawn = -1;
 
-  private spawnAreas = [
-    {
-      x: 10,
-      y: 10,
-      boundaries: {
-        topY: 9,
-        rightX: 11,
-        bottomY: 11,
-        leftX: 9
-      } 
-    },
-    {
-      x: 30,
-      y: 10,
-      boundaries: {
-        topY: 9,
-        rightX: 31,
-        bottomY: 11,
-        leftX: 29
-      } 
-    }
-  ];
-
   private get spawnAreasRandomOrder(){
     return this.spawnAreas.sort(() => .5 - Math.random());
   }
 
-  constructor(private maxNumberOfTanks: number, private minimumSpawnCycle: number, private randomSpawnCycle: number) {
+  constructor(private maxNumberOfTanks: number, private minimumSpawnCycle: number,
+    private randomSpawnCycle: number, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
 
   }
 
@@ -63,7 +43,8 @@ export class SpawnerLogicComponent implements LogicComponent {
     }
 
     if (this.updatesTillNextSpawn < 0) {
-      this.updatesTillNextSpawn = Math.round(Math.random() * this.randomSpawnCycle + this.minimumSpawnCycle);
+      this.updatesTillNextSpawn = Math.round(
+        Math.random() * this.randomSpawnCycle + this.minimumSpawnCycle);
       return;
     }
 
@@ -75,7 +56,7 @@ export class SpawnerLogicComponent implements LogicComponent {
     if (this.updatesTillNextSpawn === 0) {
       for (let s of this.spawnAreasRandomOrder) {
         if (world.findCollision(s.boundaries) == null) {
-          this.spawnTank(world, s.x, s.y);
+          this.spawnGameObject(world, s.x, s.y);
           this.updatesTillNextSpawn = -1;
           break;
         }
@@ -88,21 +69,18 @@ export class SpawnerLogicComponent implements LogicComponent {
   destroy(gameObject: GameObject, world: World) {
   }
 
-  private spawnTank(world: World, x: number, y: number) {
-    const aiTankInputComponent = new AiTankImportComponent();
-    const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
-    const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-    const aiTankGraphicComponent = new TankGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, 'ai-tank');
+  clone(): LogicComponent {
+    return new SpawnerLogicComponent(this.maxNumberOfTanks,
+      this.minimumSpawnCycle, this.randomSpawnCycle, this.spawn, this.spawnAreas);
+  }
 
-    const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
-    aiTank.width = settings.tankWidth;
-    aiTank.height = settings.tankHeight;
+  private spawnGameObject(world: World, x: number, y: number) {
+    const gameObject = this.spawn.clone();
 
-    aiTank.x = x;
-    aiTank.y = y;
-    aiTank.direction = Direction.Top;
+    gameObject.x = x;
+    gameObject.y = y;
 
-    world.gameObjects.push(aiTank);
+    world.gameObjects.push(gameObject);
 
     this.spawnedTanks++;
   }

@@ -8,13 +8,11 @@ import { fireCommand } from '../commands/fire-command';
 
 export class UserTankLogicComponent implements LogicComponent {
 
-  
   private movingOptions: MoveEvent;
   private isFired: boolean;
   private isHitted: boolean;
 
   constructor(private speed: number) {
-
   }
 
   handleEvent(type: EventTypes, options?: any) {
@@ -39,6 +37,10 @@ export class UserTankLogicComponent implements LogicComponent {
   }
 
   destroy(gameObject: GameObject, world: World) {
+  }
+
+  clone(): LogicComponent {
+    return new UserTankLogicComponent(this.speed);
   }
 
   private fire(gameObject: GameObject, world: World) {
