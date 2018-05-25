@@ -28,8 +28,22 @@ export class SpawnerLogicComponent implements LogicComponent {
         bottomY: 11,
         leftX: 9
       } 
+    },
+    {
+      x: 30,
+      y: 10,
+      boundaries: {
+        topY: 9,
+        rightX: 31,
+        bottomY: 11,
+        leftX: 29
+      } 
     }
   ];
+
+  private get spawnAreasRandomOrder(){
+    return this.spawnAreas.sort(() => .5 - Math.random());
+  }
 
   constructor(private maxNumberOfTanks: number, private minimumSpawnCycle: number, private randomSpawnCycle: number) {
 
@@ -59,9 +73,12 @@ export class SpawnerLogicComponent implements LogicComponent {
     }
 
     if (this.updatesTillNextSpawn === 0) {
-      if (world.findCollision(this.spawnAreas[0].boundaries) == null) {
-        this.spawnTank(world);
-        this.updatesTillNextSpawn = -1;
+      for (let s of this.spawnAreasRandomOrder) {
+        if (world.findCollision(s.boundaries) == null) {
+          this.spawnTank(world, s.x, s.y);
+          this.updatesTillNextSpawn = -1;
+          break;
+        }
       }
       
       return;
@@ -71,7 +88,7 @@ export class SpawnerLogicComponent implements LogicComponent {
   destroy(gameObject: GameObject, world: World) {
   }
 
-  private spawnTank(world: World) {
+  private spawnTank(world: World, x: number, y: number) {
     const aiTankInputComponent = new AiTankImportComponent();
     const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
     const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
@@ -81,8 +98,8 @@ export class SpawnerLogicComponent implements LogicComponent {
     aiTank.width = settings.tankWidth;
     aiTank.height = settings.tankHeight;
 
-    aiTank.x = 10;
-    aiTank.y = 10;
+    aiTank.x = x;
+    aiTank.y = y;
     aiTank.direction = Direction.Top;
 
     world.gameObjects.push(aiTank);
