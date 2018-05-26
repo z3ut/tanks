@@ -11,6 +11,7 @@ import { BasicPhysicComponent } from './shared/basic-physic-component';
 import { BrickWallLogicComponent } from './wall/brick-wall-logic-component';
 import { BrickWallGraphicComponent } from './wall/brick-wall-graphic-component';
 import { SpawnerLogicComponent } from './spawner/spawner-logic.component';
+import { EventTypes } from './events/event-types';
 
 const MS_PER_UPDATE = settings.msPerUpdate;
 
@@ -63,6 +64,7 @@ const spawnAreas = [
   {
     x: 10,
     y: 10,
+    direction: Direction.Bottom,
     boundaries: {
       topY: 9,
       rightX: 11,
@@ -73,6 +75,7 @@ const spawnAreas = [
   {
     x: 30,
     y: 10,
+    direction: Direction.Bottom,
     boundaries: {
       topY: 9,
       rightX: 31,
@@ -81,7 +84,7 @@ const spawnAreas = [
     } 
   }
 ];
-const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50, aiTank, spawnAreas), null, null);
+const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50, EventTypes.AiTankKilled, aiTank, spawnAreas), null, null);
 spawner.isNotPhysical = true;
 world.gameObjects.push(spawner);
 

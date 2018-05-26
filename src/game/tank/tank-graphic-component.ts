@@ -4,17 +4,19 @@ import { Direction } from '../core/direction';
 
 export class TankGraphicComponent implements GraphicComponent {
 
+  private isInited: boolean;
   private field = document.querySelector('.field');
   private tank = document.createElement('div');
 
   constructor(private width: number, private height: number, private pxPerCoord: number, private cssClass: string) {
-    this.tank.classList.add('tank', cssClass);
-    this.tank.style.width = width * pxPerCoord + 'px';
-    this.tank.style.height = height * pxPerCoord + 'px';
-    this.field.appendChild(this.tank);
+    
   }
 
   update(gameObject: GameObject) {
+    if (!this.isInited) {
+      this.init();
+    }
+
     this.tank.style.left = ((gameObject.x - (this.width - 1) / 2) * this.pxPerCoord) + 'px';
     this.tank.style.top = ((gameObject.y - (this.height - 1) / 2) * this.pxPerCoord) + 'px';
 
@@ -45,5 +47,13 @@ export class TankGraphicComponent implements GraphicComponent {
 
   clone(): GraphicComponent {
     return new TankGraphicComponent(this.width, this.height, this.pxPerCoord, this.cssClass);
+  }
+
+  private init() {
+    this.tank.classList.add('tank', this.cssClass);
+    this.tank.style.width = this.width * this.pxPerCoord + 'px';
+    this.tank.style.height = this.height * this.pxPerCoord + 'px';
+    this.field.appendChild(this.tank);
+    this.isInited = true;
   }
 }

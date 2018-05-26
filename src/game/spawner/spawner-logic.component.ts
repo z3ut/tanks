@@ -16,7 +16,7 @@ import { SpawnArea } from './spawn-area';
 
 export class SpawnerLogicComponent implements LogicComponent {
 
-  private spawnedTanks = 0;
+  private numberOfSpawned = 0;
 
   private updatesTillNextSpawn = -1;
 
@@ -24,21 +24,21 @@ export class SpawnerLogicComponent implements LogicComponent {
     return this.spawnAreas.sort(() => .5 - Math.random());
   }
 
-  constructor(private maxNumberOfTanks: number, private minimumSpawnCycle: number,
-    private randomSpawnCycle: number, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
+  constructor(private maxNumberOfSpawned: number, private minimumSpawnCycle: number,
+    private randomSpawnCycle: number, private spawnKilledEventType: EventTypes, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
 
   }
 
   handleEvent(type: EventTypes, options?: any) {
     switch (type) {
-      case EventTypes.AiTankKilled:
-        this.spawnedTanks--;
+      case this.spawnKilledEventType:
+        this.numberOfSpawned--;
         break;
       default:
     }
   }
   update(gameObject: GameObject, world: World) {
-    if (this.spawnedTanks >= this.maxNumberOfTanks) {
+    if (this.numberOfSpawned >= this.maxNumberOfSpawned) {
       return;
     }
 
@@ -56,7 +56,7 @@ export class SpawnerLogicComponent implements LogicComponent {
     if (this.updatesTillNextSpawn === 0) {
       for (let s of this.spawnAreasRandomOrder) {
         if (world.findCollision(s.boundaries) == null) {
-          this.spawnGameObject(world, s.x, s.y);
+          this.spawnGameObject(world, s.x, s.y, s.direction);
           this.updatesTillNextSpawn = -1;
           break;
         }
@@ -70,18 +70,19 @@ export class SpawnerLogicComponent implements LogicComponent {
   }
 
   clone(): LogicComponent {
-    return new SpawnerLogicComponent(this.maxNumberOfTanks,
-      this.minimumSpawnCycle, this.randomSpawnCycle, this.spawn, this.spawnAreas);
+    return new SpawnerLogicComponent(this.maxNumberOfSpawned,
+      this.minimumSpawnCycle, this.randomSpawnCycle, this.spawnKilledEventType, this.spawn, this.spawnAreas);
   }
 
-  private spawnGameObject(world: World, x: number, y: number) {
+  private spawnGameObject(world: World, x: number, y: number, direction: Direction) {
     const gameObject = this.spawn.clone();
 
     gameObject.x = x;
     gameObject.y = y;
+    gameObject.direction = direction;
 
     world.gameObjects.push(gameObject);
 
-    this.spawnedTanks++;
+    this.numberOfSpawned++;
   }
 }
