@@ -4,9 +4,9 @@ import { Direction } from '../core/direction';
 import { World } from '../core/world';
 import { ShellLogicComponent } from '../shell/shell-logic-component';
 import { settings } from '../core/settings';
-import { ShellGraphicComponent } from '../shell/shell-graphic-component';
 import { BasicPhysicComponent } from '../shared/basic-physic-component';
 import { calculatePointOnBoundaries } from '../utils/coords';
+import { BasicGraphicComponent } from '../shared/basic-graphic-component';
 
 export interface FireCommandOptions {
   direction: Direction;
@@ -19,7 +19,7 @@ export class FireCommand implements Command {
   do(gameObject: GameObject, options: FireCommandOptions) {
     const shellBasicPhysicComponent = new BasicPhysicComponent(settings.shellSpeed);
     const shellLogic = new ShellLogicComponent(settings.shellSpeed, gameObject.direction);
-    const shellGraphic = new ShellGraphicComponent(settings.shellWidth, settings.shellHeight, settings.pxPerCoord);
+    const shellGraphic = new BasicGraphicComponent(settings.shellWidth, settings.shellHeight, settings.pxPerCoord, [ 'unit', 'shell' ])
     const shell = new GameObject(null, shellLogic, shellBasicPhysicComponent, shellGraphic);
     
     const { x: shellX, y: shellY } = calculatePointOnBoundaries(gameObject.boundaries, gameObject.direction);

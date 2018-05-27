@@ -4,16 +4,14 @@ import { settings } from './core/settings';
 import { UserTankImportComponent } from './tank/user-tank-input-component';
 import { AiTankLogicComponent } from './tank/ai-tank-logic-component';
 import { UserTankLogicComponent } from './tank/user-tank-logic-component';
-import { TankGraphicComponent } from './tank/tank-graphic-component';
 import { Direction } from './core/direction';
 import { AiTankImportComponent } from './tank/ai-tank-input-component';
 import { BasicPhysicComponent } from './shared/basic-physic-component';
 import { BrickWallLogicComponent } from './wall/brick-wall-logic-component';
-import { BrickWallGraphicComponent } from './wall/brick-wall-graphic-component';
 import { SpawnerLogicComponent } from './spawner/spawner-logic-component';
 import { EventTypes } from './events/event-types';
 import { PhoenixLogicComponent } from './phoenix/phoenix-logic-component';
-import { PhoenixGraphicComponent } from './phoenix/phoenix-graphic-component';
+import { BasicGraphicComponent } from './shared/basic-graphic-component';
 
 const MS_PER_UPDATE = settings.msPerUpdate;
 
@@ -26,7 +24,7 @@ world.height = settings.fieldHeight;
 const userTankInputComponent = new UserTankImportComponent();
 const userTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const userTankLogicComponent = new UserTankLogicComponent(settings.tankSpeed);
-const userTankGraphicComponent = new TankGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, 'user-tank');
+const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, ['unit', 'user-tank']);
 
 const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
 userTank.width = settings.tankWidth;
@@ -42,7 +40,7 @@ world.gameObjects.push(userTank);
 const aiTankInputComponent = new AiTankImportComponent();
 const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-const aiTankGraphicComponent = new TankGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, 'ai-tank');
+const aiTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, ['unit', 'ai-tank']);
 
 const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
 aiTank.width = settings.tankWidth;
@@ -51,11 +49,11 @@ aiTank.height = settings.tankHeight;
 // aiTank.x = Math.round(settings.fieldHeight / 2);
 // aiTank.y = 10;
 // aiTank.direction = Direction.Top;
-
 // world.gameObjects.push(aiTank);
 
 
-const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new BrickWallGraphicComponent(1, 1, settings.pxPerCoord));
+
+const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, ['unit', 'wall', 'brick']));
 brickWall.x = 5;
 brickWall.y = settings.fieldHeight / 2;
 brickWall.width = 1;
@@ -95,7 +93,7 @@ field.style.width = (settings.fieldWidth + 1) * settings.pxPerCoord + 'px';
 field.style.height = (settings.fieldHeight + 1) * settings.pxPerCoord + 'px';
 
 
-const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new PhoenixGraphicComponent(3, 3, settings.pxPerCoord));
+const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new BasicGraphicComponent(3, 3, settings.pxPerCoord, ['unit', 'phoenix']));
 phoenix.x = 30;
 phoenix.y = 35;
 phoenix.width = 3;
