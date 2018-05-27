@@ -4,11 +4,9 @@ import { GameObject } from '../core/game-object';
 export class BasicGraphicComponent implements GraphicComponent {
 
   private isInited = false;
-  private field = document.querySelector('.field');
-  private unit = document.createElement('div');
+  private unit: HTMLDivElement;
 
-  constructor(private width: number, private height: number, private pxPerCoord: number, private cssClasses: string[]) {
-    
+  constructor(private width: number, private height: number, private pxPerCoord: number, private field: Element, private cssClasses: string[]) {
   }
 
   update(gameObject: GameObject) {
@@ -21,14 +19,18 @@ export class BasicGraphicComponent implements GraphicComponent {
   }
 
   destroy(gameObject: GameObject) {
+    if (!this.isInited) {
+      return;
+    }
     this.field.removeChild(this.unit);
   }
 
   clone(): GraphicComponent {
-    return new BasicGraphicComponent(this.width, this.height, this.pxPerCoord, this.cssClasses);
+    return new BasicGraphicComponent(this.width, this.height, this.pxPerCoord, this.field, this.cssClasses);
   }
 
   private init() {
+    this.unit = document.createElement('div');
     this.unit.classList.add(...this.cssClasses);
     this.unit.style.width = this.width * this.pxPerCoord + 'px';
     this.unit.style.height = this.height * this.pxPerCoord + 'px';

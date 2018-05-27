@@ -50,6 +50,7 @@ export class UserTankLogicComponent implements LogicComponent {
 
   private getHit(gameObject: GameObject, world: World) {
     alert('game over');
+    // TODO: add shared tank logic and constructor param for get hie event
     world.sendEvent(EventTypes.GameOver);
     this.isHitted = false;
   }

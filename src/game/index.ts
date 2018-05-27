@@ -17,6 +17,10 @@ const MS_PER_UPDATE = settings.msPerUpdate;
 
 const world = new World();
 
+const field = document.querySelector('.field') as any;
+field.style.width = (settings.fieldWidth + 1) * settings.pxPerCoord + 'px';
+field.style.height = (settings.fieldHeight + 1) * settings.pxPerCoord + 'px';
+
 world.gameObjects = [];
 world.width = settings.fieldWidth;
 world.height = settings.fieldHeight;
@@ -24,7 +28,7 @@ world.height = settings.fieldHeight;
 const userTankInputComponent = new UserTankImportComponent();
 const userTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const userTankLogicComponent = new UserTankLogicComponent(settings.tankSpeed);
-const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, ['unit', 'user-tank']);
+const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'user-tank']);
 
 const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
 userTank.width = settings.tankWidth;
@@ -40,7 +44,7 @@ world.gameObjects.push(userTank);
 const aiTankInputComponent = new AiTankImportComponent();
 const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-const aiTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, ['unit', 'ai-tank']);
+const aiTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'ai-tank']);
 
 const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
 aiTank.width = settings.tankWidth;
@@ -53,12 +57,28 @@ aiTank.height = settings.tankHeight;
 
 
 
-const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, ['unit', 'wall', 'brick']));
+const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'brick']));
 brickWall.x = 5;
-brickWall.y = settings.fieldHeight / 2;
+brickWall.y = 20;
 brickWall.width = 1;
 brickWall.height = 1;
 world.gameObjects.push(brickWall);
+
+const steelWall = new GameObject(null, null, null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'steel']));
+steelWall.x = 5;
+steelWall.y = 21;
+steelWall.width = 1;
+steelWall.height = 1;
+world.gameObjects.push(steelWall);
+
+for (let i = 0; i <= settings.fieldWidth; i++) {
+  const wall = new GameObject(null, null, null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'steel']));
+  wall.x = i;
+  wall.y = 15;
+  wall.width = 1;
+  wall.height = 1;
+  world.gameObjects.push(wall);
+}
 
 const spawnAreas = [
   {
@@ -88,12 +108,7 @@ const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50, EventT
 spawner.isNotPhysical = true;
 world.gameObjects.push(spawner);
 
-const field = document.querySelector('.field') as any;
-field.style.width = (settings.fieldWidth + 1) * settings.pxPerCoord + 'px';
-field.style.height = (settings.fieldHeight + 1) * settings.pxPerCoord + 'px';
-
-
-const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new BasicGraphicComponent(3, 3, settings.pxPerCoord, ['unit', 'phoenix']));
+const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new BasicGraphicComponent(3, 3, settings.pxPerCoord, field, ['unit', 'phoenix']));
 phoenix.x = 30;
 phoenix.y = 35;
 phoenix.width = 3;
