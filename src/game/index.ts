@@ -10,8 +10,10 @@ import { AiTankImportComponent } from './tank/ai-tank-input-component';
 import { BasicPhysicComponent } from './shared/basic-physic-component';
 import { BrickWallLogicComponent } from './wall/brick-wall-logic-component';
 import { BrickWallGraphicComponent } from './wall/brick-wall-graphic-component';
-import { SpawnerLogicComponent } from './spawner/spawner-logic.component';
+import { SpawnerLogicComponent } from './spawner/spawner-logic-component';
 import { EventTypes } from './events/event-types';
+import { PhoenixLogicComponent } from './phoenix/phoenix-logic-component';
+import { PhoenixGraphicComponent } from './phoenix/phoenix-graphic-component';
 
 const MS_PER_UPDATE = settings.msPerUpdate;
 
@@ -91,6 +93,14 @@ world.gameObjects.push(spawner);
 const field = document.querySelector('.field') as any;
 field.style.width = (settings.fieldWidth + 1) * settings.pxPerCoord + 'px';
 field.style.height = (settings.fieldHeight + 1) * settings.pxPerCoord + 'px';
+
+
+const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new PhoenixGraphicComponent(3, 3, settings.pxPerCoord));
+phoenix.x = 30;
+phoenix.y = 35;
+phoenix.width = 3;
+phoenix.height = 3;
+world.gameObjects.push(phoenix);
 
 // main loop
 // main();

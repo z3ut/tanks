@@ -29,3 +29,8 @@
   border: 1px solid black;
   box-sizing: border-box;
 }
+
+.phoenix {
+  position: absolute;
+  background-color: orange;
+}

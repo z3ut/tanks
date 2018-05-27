@@ -51,5 +51,6 @@ export class UserTankLogicComponent implements LogicComponent {
   private getHit(gameObject: GameObject, world: World) {
     alert('game over');
     world.sendEvent(EventTypes.GameOver);
+    this.isHitted = false;
   }
 }

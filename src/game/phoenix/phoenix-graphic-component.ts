@@ -1,13 +1,13 @@
 import { GraphicComponent } from '../core/graphic-component';
 import { GameObject } from '../core/game-object';
 
-export class ShellGraphicComponent implements GraphicComponent {
+export class PhoenixGraphicComponent implements GraphicComponent {
 
   private field = document.querySelector('.field');
   private shell = document.createElement('div');
 
   constructor(private width: number, private height: number, private pxPerCoord: number) {
-    this.shell.classList.add('shell');
+    this.shell.classList.add('phoenix');
     this.shell.style.width = width * pxPerCoord + 'px';
     this.shell.style.height = height * pxPerCoord + 'px';
     this.field.appendChild(this.shell);
@@ -23,6 +23,6 @@ export class ShellGraphicComponent implements GraphicComponent {
   }
 
   clone(): GraphicComponent {
-    return new ShellGraphicComponent(this.width, this.height, this.pxPerCoord);
+    return new PhoenixGraphicComponent(this.width, this.height, this.pxPerCoord);
   }
 }
