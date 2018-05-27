@@ -21,6 +21,10 @@ export class BrickWallLogicComponent implements LogicComponent {
       default:
     }
   }
+
+  init(gameObject: GameObject, word: World) {
+  }
+
   update(gameObject: GameObject, world: World) {
     if (this.isHitted) {
       this.getHit(gameObject, world);

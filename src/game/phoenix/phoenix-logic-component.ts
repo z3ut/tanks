@@ -6,10 +6,10 @@ import { Clonable } from '../core/clonable';
 
 export class PhoenixLogicComponent implements LogicComponent {
 
+  
   private isHitted: boolean;
 
   constructor() {
-
   }
 
   handleEvent(type: EventTypes, options?: any) {
@@ -20,6 +20,10 @@ export class PhoenixLogicComponent implements LogicComponent {
       default:
     }
   }
+
+  init(gameObject: GameObject, word: World) {
+  }
+
   update(gameObject: GameObject, world: World) {
     if (this.isHitted) {
       this.getHit(world);

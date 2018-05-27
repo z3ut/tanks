@@ -23,6 +23,9 @@ export class SpawnerLogicComponent implements LogicComponent {
 
   }
 
+  init(gameObject: GameObject, word: World) {
+  }
+
   handleEvent(type: EventTypes, options?: any) {
     switch (type) {
       case this.spawnKilledEventType:
@@ -31,6 +34,7 @@ export class SpawnerLogicComponent implements LogicComponent {
       default:
     }
   }
+
   update(gameObject: GameObject, world: World) {
     if (this.numberOfSpawned >= this.maxNumberOfSpawned) {
       return;

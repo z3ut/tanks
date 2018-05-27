@@ -29,6 +29,8 @@ export class FireCommand implements Command {
     shell.width = settings.shellWidth;
     shell.height = settings.shellHeight;
     options.world.gameObjects.push(shell);
+
+    shell.init(options.world);
   }
 }
 

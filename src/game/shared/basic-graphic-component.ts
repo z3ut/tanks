@@ -11,11 +11,10 @@ export class BasicGraphicComponent implements GraphicComponent {
 
   update(gameObject: GameObject) {
     if (!this.isInited) {
-      this.init();
+      this.init(gameObject);
     }
 
-    this.unit.style.left = ((gameObject.x - (this.width - 1) / 2) * this.pxPerCoord) + 'px';
-    this.unit.style.top = ((gameObject.y - (this.height - 1) / 2) * this.pxPerCoord) + 'px';
+    this.updatePosition(gameObject);
   }
 
   destroy(gameObject: GameObject) {
@@ -29,12 +28,19 @@ export class BasicGraphicComponent implements GraphicComponent {
     return new BasicGraphicComponent(this.width, this.height, this.pxPerCoord, this.field, this.cssClasses);
   }
 
-  private init() {
+  init(gameObject: GameObject) {
     this.unit = document.createElement('div');
     this.unit.classList.add(...this.cssClasses);
     this.unit.style.width = this.width * this.pxPerCoord + 'px';
     this.unit.style.height = this.height * this.pxPerCoord + 'px';
     this.field.appendChild(this.unit);
     this.isInited = true;
+
+    this.updatePosition(gameObject);
+  }
+
+  private updatePosition(gameObject: GameObject) {
+    this.unit.style.left = ((gameObject.x - (this.width - 1) / 2) * this.pxPerCoord) + 'px';
+    this.unit.style.top = ((gameObject.y - (this.height - 1) / 2) * this.pxPerCoord) + 'px';
   }
 }

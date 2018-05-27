@@ -24,6 +24,9 @@ export class BasicPhysicComponent implements PhysicComponent {
     }
   }
 
+  init(gameObject: GameObject, word: World) {
+  }
+
   update(gameObject: GameObject, world: World) {
     if (this.movingOptions) {
       this.move(gameObject, this.movingOptions, world);

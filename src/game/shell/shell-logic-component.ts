@@ -26,6 +26,9 @@ export class ShellLogicComponent implements LogicComponent {
     }
   }
 
+  init(gameObject: GameObject, word: World) {
+  }
+
   update(gameObject: GameObject, world: World) {
     if (this.isDestroyed) {
       gameObject.destroy(world);

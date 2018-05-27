@@ -47,6 +47,12 @@ export class GameObject implements Clonable<GameObject> {
 
   }
 
+  init(world: World) {
+    this.physicComponent && this.physicComponent.init(this, world);
+    this.logicComponent && this.logicComponent.init(this, world);
+    this.graphicComponent && this.graphicComponent.init(this);
+  }
+
   update(world: World) {
     this.inputComponent && this.inputComponent.update(this);
     this.physicComponent && this.physicComponent.update(this, world);

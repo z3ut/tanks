@@ -28,6 +28,10 @@ export class AiTankLogicComponent implements LogicComponent {
       default:
     }
   }
+
+  init(gameObject: GameObject, word: World) {
+  }
+
   update(gameObject: GameObject, world: World) {
     if (this.isFired) {
       this.fire(gameObject, world);
