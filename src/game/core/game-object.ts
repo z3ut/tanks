@@ -29,6 +29,8 @@ export class GameObject implements Clonable<GameObject> {
   direction: Direction;
   isNotPhysical: boolean;
 
+  isDestroyed: boolean;
+
   get boundaries(): Boundaries {
     return {
       topY: this.y - (this.height - 1) / 2,
@@ -65,5 +67,6 @@ export class GameObject implements Clonable<GameObject> {
     this.physicComponent && this.physicComponent.destroy(this, world);
     this.graphicComponent && this.graphicComponent.destroy(this);
     world.gameObjects = world.gameObjects.filter(g => g != this);
+    this.isDestroyed = true;
   }
 }

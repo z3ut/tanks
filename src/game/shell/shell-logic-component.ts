@@ -10,7 +10,6 @@ export class ShellLogicComponent implements LogicComponent {
   private isDestroyed: boolean;
 
   constructor(private speed: number, private direction: Direction) {
-
   }
 
   handleEvent(type: EventTypes, options?: any) {
@@ -32,16 +31,19 @@ export class ShellLogicComponent implements LogicComponent {
       gameObject.destroy(world);
       return;
     }
-    moveCommand.do(gameObject, { direction: this.direction, distance: this.speed, isIgnoreObjects: false, world });
-    const intersection = world.findCollision(gameObject.boundaries, gameObject);
+    const moveOptions = {
+      direction: this.direction,
+      distance: this.speed,
+      isIgnoreObjects: false,
+      world
+    };
+    const intersection = moveCommand.do(gameObject, moveOptions);
     if (intersection) {
       intersection.handleEvent(EventTypes.Hit);
       gameObject.destroy(world);
-      // world.gameObjects = world.gameObjects.filter(g => g !== gameObject);
     }
     if (!world.isInsideWorld(gameObject.boundaries)) {
       gameObject.destroy(world);
-      // world.gameObjects = world.gameObjects.filter(g => g !== gameObject);
     }
   }
 
