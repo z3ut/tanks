@@ -19,21 +19,7 @@ export class AiTankMoveState implements AiTankState {
   update(gameObject: GameObject, aiTankInput: AiTankImportComponent) {
     if (this.numberOfCurrentUpdates === 0) {
       const random = getWholeNumberUnder(4);
-      switch (random) {
-        case 0:
-          this.direction = Direction.Top;
-          break;
-        case 1:
-          this.direction = Direction.Right;
-          break;
-        case 2:
-          this.direction = Direction.Bottom;
-          break;
-        case 3:
-          this.direction = Direction.Left;
-          break;
-        default:
-      }
+      this.direction = Direction[Direction[random]];
     }
 
     if (this.currentWaitBeforeMove < this.waitBeforeMove) {
