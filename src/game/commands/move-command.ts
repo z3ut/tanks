@@ -48,6 +48,8 @@ export class MoveCommand implements Command {
           }
 
           gameObject.handleEvent(EventTypes.Collision, { collision });
+
+          return;
         }
       }
     }
