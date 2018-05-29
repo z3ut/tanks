@@ -23,23 +23,6 @@ export class MoveCommand implements Command {
 
     const { x: moveX, y: moveY } = calculateMovePositon(gameObject.x, gameObject.y, gameObject.direction, options.distance);
 
-    // const deltaX = moveX - gameObject.x;
-    // const deltaY = moveY - gameObject.y;
-
-    // currentBoundaries.leftX += deltaX;
-    // currentBoundaries.rightX += deltaX;
-    // currentBoundaries.topY += deltaY;
-    // currentBoundaries.bottomY += deltaY;
-
-    // if (!options.world.isInsideWorld(currentBoundaries)) {
-    //   // TODO: set position to boundaries of world
-    // }
-
-    // if (options.isIgnoreObjects) {
-    //   gameObject.x = moveX;
-    //   gameObject.y = moveY;
-    // }
-
     let previousX = startX;
     let previousY = startY;
 
@@ -49,7 +32,6 @@ export class MoveCommand implements Command {
       return;
     }
 
-    // TODO: add diagonal path
     for (let deltaX = 0; Math.abs(deltaX) <= Math.abs(moveX - startX); deltaX += (moveX - startX > 0 ? 1 : -1)) {
       for (let deltaY = 0; Math.abs(deltaY) <= Math.abs(moveY - startY); deltaY += (moveY - startY > 0 ? 1 : -1)) {
         gameObject.x = startX + deltaX;
@@ -66,57 +48,9 @@ export class MoveCommand implements Command {
           }
 
           gameObject.handleEvent(EventTypes.Collision, { collision });
-          
-          return collision;
         }
       }
     }
-
-
-    // const intersection = options.world.findCollisionOnPath(gameObject, moveX, moveY);
-
-    // if (intersection) {
-    //   gameObject.x = intersection.x;
-    //   gameObject.y = intersection.y;
-    //   gameObject.handleEvent(EventTypes.Collision, { intersection: intersection.gameObject });
-    //   return;
-    // }
-
-    // gameObject.x = moveX;
-    // gameObject.y = moveY;
-
-
-    // TODO: Обработка процесса прохода объекта с границами по ходу
-    // switch (options.direction) {
-    //   case Direction.Bottom:
-    //     currentBoundaries.bottomY += options.distance;
-    //     currentBoundaries.topY += options.distance;
-    //     if (options.isIgnoreObjects || this.isValidPosition(options.world, currentBoundaries, gameObject)) {
-    //       gameObject.y += options.distance;
-    //     }
-    //     break;
-    //   case Direction.Left:
-    //     currentBoundaries.leftX -= options.distance;
-    //     currentBoundaries.rightX -= options.distance;
-    //     if (options.isIgnoreObjects || this.isValidPosition(options.world, currentBoundaries, gameObject)) {
-    //       gameObject.x -= options.distance;
-    //     }
-    //     break;
-    //   case Direction.Right:
-    //     currentBoundaries.leftX += options.distance;
-    //     currentBoundaries.rightX += options.distance;
-    //     if (options.isIgnoreObjects || this.isValidPosition(options.world, currentBoundaries, gameObject)) {
-    //       gameObject.x += options.distance;
-    //     }
-    //     break;
-    //   case Direction.Top:
-    //     currentBoundaries.bottomY -= options.distance;
-    //     currentBoundaries.topY -= options.distance;
-    //     if (options.isIgnoreObjects || this.isValidPosition(options.world, currentBoundaries, gameObject)) {
-    //       gameObject.y -= options.distance;
-    //     }
-    //     break;
-    // }
   }
 
   private isValidPosition(world: World, boundaries: Boundaries,

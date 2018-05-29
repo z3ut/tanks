@@ -8,7 +8,7 @@ import { AiTankIdleState } from './ai-tank-states/ai-tank-idle-state';
 import { AiTankMoveState } from './ai-tank-states/ai-tank-move-state';
 import { getWholeNumberUnder } from '../utils/math-utils';
 
-export class AiTankImportComponent implements InputComponent {
+export class AiTankInputComponent implements InputComponent {
   private currentState: AiTankState;
   private states: { state: AiTankState, weight: number }[];
   private totalWeights: number;
@@ -28,7 +28,7 @@ export class AiTankImportComponent implements InputComponent {
   }
 
   clone(): InputComponent {
-    return new AiTankImportComponent();
+    return new AiTankInputComponent();
   }
 
   setState(state: AiTankState) {

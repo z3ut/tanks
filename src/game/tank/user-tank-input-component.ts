@@ -3,7 +3,7 @@ import { GameObject } from '../core/game-object';
 import { EventTypes } from '../events/event-types';
 import { Direction } from '../core/direction';
 
-export class UserTankImportComponent implements InputComponent {
+export class UserTankInputComponent implements InputComponent {
 
   lastKeyCode: number;
 
@@ -48,6 +48,6 @@ export class UserTankImportComponent implements InputComponent {
   }
 
   clone(): InputComponent {
-    return new UserTankImportComponent();
+    return new UserTankInputComponent();
   }
 }

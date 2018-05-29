@@ -1,6 +1,6 @@
 import { AiTankState } from "./ai-tank-state";
 import { GameObject } from "../../core/game-object";
-import { AiTankImportComponent } from "../ai-tank-input-component";
+import { AiTankInputComponent } from "../ai-tank-input-component";
 import { Direction } from "../../core/direction";
 import { EventTypes } from "../../events/event-types";
 import { getWholeNumberUnder } from "../../utils/math-utils";
@@ -16,7 +16,7 @@ export class AiTankMoveState implements AiTankState {
   constructor() {
   }
 
-  update(gameObject: GameObject, aiTankInput: AiTankImportComponent) {
+  update(gameObject: GameObject, aiTankInput: AiTankInputComponent) {
     if (this.numberOfCurrentUpdates === 0) {
       const random = getWholeNumberUnder(4);
       this.direction = Direction[Direction[random]];

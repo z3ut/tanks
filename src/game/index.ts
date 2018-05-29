@@ -1,11 +1,11 @@
 import { GameObject } from './core/game-object';
 import { World } from './core/world';
 import { settings } from './core/settings';
-import { UserTankImportComponent } from './tank/user-tank-input-component';
+import { UserTankInputComponent } from './tank/user-tank-input-component';
 import { AiTankLogicComponent } from './tank/ai-tank-logic-component';
 import { UserTankLogicComponent } from './tank/user-tank-logic-component';
 import { Direction } from './core/direction';
-import { AiTankImportComponent } from './tank/ai-tank-input-component';
+import { AiTankInputComponent } from './tank/ai-tank-input-component';
 import { BasicPhysicComponent } from './shared/basic-physic-component';
 import { BrickWallLogicComponent } from './wall/brick-wall-logic-component';
 import { SpawnerLogicComponent } from './spawner/spawner-logic-component';
@@ -26,7 +26,7 @@ world.gameObjects = [];
 world.width = settings.fieldWidth;
 world.height = settings.fieldHeight;
 
-const userTankInputComponent = new UserTankImportComponent();
+const userTankInputComponent = new UserTankInputComponent();
 const userTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const userTankLogicComponent = new UserTankLogicComponent(settings.tankSpeed);
 // const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'user-tank']);
@@ -43,7 +43,7 @@ userTank.direction = Direction.Top;
 world.gameObjects.push(userTank);
 
 
-const aiTankInputComponent = new AiTankImportComponent();
+const aiTankInputComponent = new AiTankInputComponent();
 const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
 const aiTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('../assets/ai-tank.png'));

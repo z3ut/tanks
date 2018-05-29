@@ -8,6 +8,7 @@ import { BasicPhysicComponent } from '../shared/basic-physic-component';
 import { calculatePointOnBoundaries } from '../utils/coords';
 import { BasicGraphicComponent } from '../shared/basic-graphic-component';
 import { ImgGraphicComponent } from '../shared/img-graphic-components';
+import { ShellInputComponent } from '../shell/shell-input-component';
 
 export interface FireCommandOptions {
   direction: Direction;
@@ -18,10 +19,11 @@ export interface FireCommandOptions {
 
 export class FireCommand implements Command {
   do(gameObject: GameObject, options: FireCommandOptions) {
+    const shellInputComponent = new ShellInputComponent(options.direction);
     const shellBasicPhysicComponent = new BasicPhysicComponent(settings.shellSpeed);
     const shellLogic = new ShellLogicComponent(settings.shellSpeed, gameObject.direction);
     const shellGraphic = new ImgGraphicComponent(settings.shellWidth, settings.shellHeight, settings.pxPerCoord, document.querySelector('.field'), ['unit'], require('../../assets/shell.png'))
-    const shell = new GameObject(null, shellLogic, shellBasicPhysicComponent, shellGraphic);
+    const shell = new GameObject(shellInputComponent, shellLogic, shellBasicPhysicComponent, shellGraphic);
     
     const { x: shellX, y: shellY } = calculatePointOnBoundaries(gameObject.boundaries, gameObject.direction);
 

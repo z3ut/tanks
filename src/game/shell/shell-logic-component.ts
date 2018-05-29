@@ -34,20 +34,6 @@ export class ShellLogicComponent implements LogicComponent {
       gameObject.destroy(world);
       return;
     }
-    const moveOptions = {
-      direction: this.direction,
-      distance: this.speed,
-      isIgnoreObjects: false,
-      world
-    };
-    const intersection = moveCommand.do(gameObject, moveOptions);
-    if (intersection) {
-      intersection.handleEvent(EventTypes.Hit);
-      gameObject.destroy(world);
-    }
-    if (!world.isInsideWorld(gameObject.boundaries)) {
-      gameObject.destroy(world);
-    }
   }
 
   destroy(gameObject: GameObject) {
