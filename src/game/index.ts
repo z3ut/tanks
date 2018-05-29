@@ -12,6 +12,7 @@ import { SpawnerLogicComponent } from './spawner/spawner-logic-component';
 import { EventTypes } from './events/event-types';
 import { PhoenixLogicComponent } from './phoenix/phoenix-logic-component';
 import { BasicGraphicComponent } from './shared/basic-graphic-component';
+import { ImgGraphicComponent } from './shared/img-graphic-components';
 
 const MS_PER_UPDATE = settings.msPerUpdate;
 
@@ -28,7 +29,8 @@ world.height = settings.fieldHeight;
 const userTankInputComponent = new UserTankImportComponent();
 const userTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const userTankLogicComponent = new UserTankLogicComponent(settings.tankSpeed);
-const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'user-tank']);
+// const userTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'user-tank']);
+const userTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('../assets/user-tank.png'));
 
 const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
 userTank.width = settings.tankWidth;
@@ -44,7 +46,7 @@ world.gameObjects.push(userTank);
 const aiTankInputComponent = new AiTankImportComponent();
 const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
 const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-const aiTankGraphicComponent = new BasicGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit', 'ai-tank']);
+const aiTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('../assets/ai-tank.png'));
 
 const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
 aiTank.width = settings.tankWidth;
@@ -57,14 +59,14 @@ aiTank.height = settings.tankHeight;
 
 
 
-const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'brick']));
+const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../assets/wall-brick.png')));
 brickWall.x = 5;
 brickWall.y = 20;
 brickWall.width = 1;
 brickWall.height = 1;
 world.gameObjects.push(brickWall);
 
-const steelWall = new GameObject(null, null, null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'steel']));
+const steelWall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../assets/wall-steel.png')));
 steelWall.x = 5;
 steelWall.y = 21;
 steelWall.width = 1;
@@ -72,13 +74,25 @@ steelWall.height = 1;
 world.gameObjects.push(steelWall);
 
 for (let i = 0; i <= settings.fieldWidth; i++) {
-  const wall = new GameObject(null, null, null, new BasicGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit', 'wall', 'steel']));
+  const wall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../assets/wall-steel.png')));
   wall.x = i;
   wall.y = 15;
   wall.width = 1;
   wall.height = 1;
   world.gameObjects.push(wall);
 }
+
+for (let j = 0; j < 3; j++) {
+  for (let i = 16; i <= settings.fieldHeight; i++) {
+    const wall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../assets/wall-brick.png')));
+    wall.x = j;
+    wall.y = i;
+    wall.width = 1;
+    wall.height = 1;
+    world.gameObjects.push(wall);
+  }
+}
+
 
 const spawnAreas = [
   {
@@ -108,11 +122,11 @@ const spawner = new GameObject(null, new SpawnerLogicComponent(2, 20, 50, EventT
 spawner.isNotPhysical = true;
 world.gameObjects.push(spawner);
 
-const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new BasicGraphicComponent(3, 3, settings.pxPerCoord, field, ['unit', 'phoenix']));
+const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new ImgGraphicComponent(5, 5, settings.pxPerCoord, field, ['unit'], require('../assets/phoenix.png')));
 phoenix.x = 30;
 phoenix.y = 35;
-phoenix.width = 3;
-phoenix.height = 3;
+phoenix.width = 5;
+phoenix.height = 5;
 world.gameObjects.push(phoenix);
 
 // main loop
