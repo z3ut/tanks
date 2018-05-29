@@ -7,6 +7,7 @@ import { settings } from '../core/settings';
 import { Direction } from '../core/direction';
 import { Clonable } from '../core/clonable';
 import { SpawnArea } from './spawn-area';
+import { getWholeNumberInRange } from '../utils/math-utils';
 
 export class SpawnerLogicComponent implements LogicComponent {
 
@@ -19,7 +20,7 @@ export class SpawnerLogicComponent implements LogicComponent {
   }
 
   constructor(private maxNumberOfSpawned: number, private minimumSpawnCycle: number,
-    private randomSpawnCycle: number, private spawnKilledEventType: EventTypes, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
+    private maxSpawnCycle: number, private spawnKilledEventType: EventTypes, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
 
   }
 
@@ -41,8 +42,7 @@ export class SpawnerLogicComponent implements LogicComponent {
     }
 
     if (this.updatesTillNextSpawn < 0) {
-      this.updatesTillNextSpawn = Math.round(
-        Math.random() * this.randomSpawnCycle + this.minimumSpawnCycle);
+      this.updatesTillNextSpawn = getWholeNumberInRange(this.minimumSpawnCycle, this.maxSpawnCycle);
       return;
     }
 
@@ -69,7 +69,7 @@ export class SpawnerLogicComponent implements LogicComponent {
 
   clone(): LogicComponent {
     return new SpawnerLogicComponent(this.maxNumberOfSpawned,
-      this.minimumSpawnCycle, this.randomSpawnCycle, this.spawnKilledEventType, this.spawn, this.spawnAreas);
+      this.minimumSpawnCycle, this.maxSpawnCycle, this.spawnKilledEventType, this.spawn, this.spawnAreas);
   }
 
   private spawnGameObject(world: World, x: number, y: number, direction: Direction) {

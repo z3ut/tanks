@@ -90,7 +90,7 @@ const spawnAreas = [
       rightX: 11,
       bottomY: 11,
       leftX: 9
-    } 
+    }
   },
   {
     x: 30,
@@ -101,10 +101,10 @@ const spawnAreas = [
       rightX: 31,
       bottomY: 11,
       leftX: 29
-    } 
+    }
   }
 ];
-const spawner = new GameObject(null, new SpawnerLogicComponent(1, 20, 50, EventTypes.AiTankKilled, aiTank, spawnAreas), null, null);
+const spawner = new GameObject(null, new SpawnerLogicComponent(2, 20, 50, EventTypes.AiTankKilled, aiTank, spawnAreas), null, null);
 spawner.isNotPhysical = true;
 world.gameObjects.push(spawner);
 
