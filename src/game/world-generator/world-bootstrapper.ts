@@ -18,7 +18,7 @@ export class WorldBootstrapper {
   bootstrapWorld(): World {
     const world = new World();
 
-    const field = document.querySelector('.field') as any;
+    const field = document.querySelector('[data-field]') as any;
     field.style.width = (settings.fieldWidth + 1) * settings.pxPerCoord + 'px';
     field.style.height = (settings.fieldHeight + 1) * settings.pxPerCoord + 'px';
 
@@ -29,7 +29,7 @@ export class WorldBootstrapper {
     const userTankInputComponent = new UserTankInputComponent();
     const userTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
     const userTankLogicComponent = new UserTankLogicComponent(settings.tankSpeed);
-    const userTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('../../assets/user-tank.png'));
+    const userTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('~/assets/user-tank.png'));
 
     const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
     userTank.width = settings.tankWidth;
@@ -42,14 +42,14 @@ export class WorldBootstrapper {
     world.gameObjects.push(userTank);
 
 
-    const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../../assets/wall-brick.png')));
+    const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-brick.png')));
     brickWall.x = 5;
     brickWall.y = 20;
     brickWall.width = 1;
     brickWall.height = 1;
     world.gameObjects.push(brickWall);
 
-    const steelWall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../../assets/wall-steel.png')));
+    const steelWall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-steel.png')));
     steelWall.x = 5;
     steelWall.y = 21;
     steelWall.width = 1;
@@ -57,7 +57,7 @@ export class WorldBootstrapper {
     world.gameObjects.push(steelWall);
 
     for (let i = 0; i <= settings.fieldWidth; i++) {
-      const wall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../../assets/wall-steel.png')));
+      const wall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-steel.png')));
       wall.x = i;
       wall.y = 15;
       wall.width = 1;
@@ -67,7 +67,7 @@ export class WorldBootstrapper {
 
     for (let j = 0; j < 3; j++) {
       for (let i = 16; i <= settings.fieldHeight; i++) {
-        const wall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('../../assets/wall-brick.png')));
+        const wall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-brick.png')));
         wall.x = j;
         wall.y = i;
         wall.width = 1;
@@ -105,7 +105,7 @@ export class WorldBootstrapper {
     const aiTankInputComponent = new AiTankInputComponent();
     const aiTankBasicPhysicComponent = new BasicPhysicComponent(settings.tankSpeed);
     const aiTankLogicComponent = new AiTankLogicComponent(settings.tankSpeed);
-    const aiTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('../../assets/ai-tank.png'));
+    const aiTankGraphicComponent = new ImgGraphicComponent(settings.tankWidth, settings.tankHeight, settings.pxPerCoord, field, ['unit'], require('~/assets/ai-tank.png'));
 
     const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
     aiTank.width = settings.tankWidth;
@@ -115,7 +115,7 @@ export class WorldBootstrapper {
     spawner.isNotPhysical = true;
     world.gameObjects.push(spawner);
 
-    const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new ImgGraphicComponent(5, 5, settings.pxPerCoord, field, ['unit'], require('../../assets/phoenix.png')));
+    const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new ImgGraphicComponent(5, 5, settings.pxPerCoord, field, ['unit'], require('~/assets/phoenix.png')));
     phoenix.x = 30;
     phoenix.y = 35;
     phoenix.width = 5;
