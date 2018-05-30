@@ -12,7 +12,7 @@ export class UserTankLogicComponent implements LogicComponent {
   private isFired: boolean;
   private isHitted: boolean;
 
-  constructor(private speed: number) {
+  constructor() {
   }
 
   handleEvent(type: EventTypes, options?: any) {
@@ -44,7 +44,7 @@ export class UserTankLogicComponent implements LogicComponent {
   }
 
   clone(): LogicComponent {
-    return new UserTankLogicComponent(this.speed);
+    return new UserTankLogicComponent();
   }
 
   private fire(gameObject: GameObject, world: World) {

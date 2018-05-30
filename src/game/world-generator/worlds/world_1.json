@@ -1,0 +1,45 @@
+{
+  "field": {
+    "width": 40,
+    "height": 40,
+    "startX": 20,
+    "startY": 20,
+    "startDirection": "Top"
+  },
+  "gameObjects": {
+    "walls": {
+      "brick": [
+        {
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "steel": [
+        {
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    "tankSpawns": {
+      "maxTanksCountSimultaniously": 2,
+      "areas": [
+        {
+          "x": 10,
+          "y": 10,
+          "direction": "Top",
+          "boundaries": {
+            "topY": 9,
+            "rightX": 11,
+            "bottomY": 11,
+            "leftX": 9
+          }
+        }
+      ]
+    },
+    "phoenix": {
+      "x": 30,
+      "y": 30
+    }
+  }
+}

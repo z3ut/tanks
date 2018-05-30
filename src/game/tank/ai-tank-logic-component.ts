@@ -13,7 +13,7 @@ export class AiTankLogicComponent implements LogicComponent {
   private isFired: boolean;
   private isHitted: boolean;
 
-  constructor(private speed: number) {
+  constructor() {
 
   }
 
@@ -46,7 +46,7 @@ export class AiTankLogicComponent implements LogicComponent {
   }
 
   clone(): LogicComponent {
-    return new AiTankLogicComponent(this.speed);
+    return new AiTankLogicComponent();
   }
 
   private fire(gameObject: GameObject, world: World) {

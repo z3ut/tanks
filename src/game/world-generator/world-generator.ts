@@ -14,6 +14,6 @@ export class WorldGenerator {
   }
 
   getWorld(id: number) {
-    return this.worldBootstrapper.bootstrapWorld();
+    return this.worldBootstrapper.bootstrapWorld(id);
   }
 }
