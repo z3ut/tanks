@@ -5,16 +5,14 @@ import { EventTypes } from '../events/event-types';
 import { MoveEvent } from '../events/move-event';
 import { moveCommand } from '../commands/move-command';
 import { fireCommand } from '../commands/fire-command';
-import { Direction } from '../core/direction';
 
-export class AiTankLogicComponent implements LogicComponent {
+export class TankLogicComponent implements LogicComponent {
 
   private movingOptions: MoveEvent;
   private isFired: boolean;
   private isHitted: boolean;
 
-  constructor() {
-
+  constructor(private hitEvent: EventTypes) {
   }
 
   handleEvent(type: EventTypes, options?: any) {
@@ -46,36 +44,19 @@ export class AiTankLogicComponent implements LogicComponent {
   }
 
   clone(): LogicComponent {
-    return new AiTankLogicComponent();
+    return new TankLogicComponent(this.hitEvent);
   }
 
   private fire(gameObject: GameObject, world: World) {
-    let shellX, shellY;
-    switch (gameObject.direction) {
-      case Direction.Top:
-        shellX = gameObject.boundaries.bottomY - 1;
-        shellY = gameObject.y;
-        break;
-      case Direction.Right:
-        shellX = gameObject.x;
-        shellY = gameObject.boundaries.rightX + 1;
-        break;
-      case Direction.Bottom:
-        shellX = gameObject.boundaries.bottomY + 1;
-        shellY = gameObject.y;
-        break;
-      case Direction.Left:
-        shellX = gameObject.x;
-        shellY = gameObject.boundaries.leftX - 1;
-        break;
-
-    }
-    fireCommand.do(gameObject, { direction: gameObject.direction, x: shellX, y: shellY, world });
+    fireCommand.do(gameObject, {
+      direction: gameObject.direction,
+      world
+    });
     this.isFired = false;
   }
 
   private getHit(gameObject: GameObject, world: World) {
-    world.sendEvent(EventTypes.AiTankKilled);
+    world.sendEvent(this.hitEvent);
     gameObject.destroy(world);
   }
 }

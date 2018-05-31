@@ -2,17 +2,16 @@ import { World } from "../core/world";
 import { settings } from "../core/settings";
 import { UserTankInputComponent } from "../tank/user-tank-input-component";
 import { BasicPhysicComponent } from "../shared/basic-physic-component";
-import { UserTankLogicComponent } from "../tank/user-tank-logic-component";
 import { ImgGraphicComponent } from "../shared/img-graphic-components";
 import { GameObject } from "../core/game-object";
 import { Direction } from "../core/direction";
 import { AiTankInputComponent } from "../tank/ai-tank-input-component";
-import { AiTankLogicComponent } from "../tank/ai-tank-logic-component";
 import { BrickWallLogicComponent } from "../wall/brick-wall-logic-component";
 import { SpawnerLogicComponent } from "../spawner/spawner-logic-component";
 import { PhoenixLogicComponent } from "../phoenix/phoenix-logic-component";
 import { EventTypes } from "../events/event-types";
 import { WorldJsonDescription } from "./world-json-description";
+import { TankLogicComponent } from "../tank/tank-logic-component";
 
 const worldJson = require('./worlds/world_1.json') as WorldJsonDescription;
 
@@ -35,7 +34,7 @@ export class WorldBootstrapper {
 
     const userTankInputComponent = new UserTankInputComponent();
     const userTankBasicPhysicComponent = new BasicPhysicComponent(userTankJson.speed);
-    const userTankLogicComponent = new UserTankLogicComponent();
+    const userTankLogicComponent = new TankLogicComponent(EventTypes.UserTankKilled);
     const userTankGraphicComponent = new ImgGraphicComponent(userTankJson.width, userTankJson.height, settings.pxPerCoord, field, ['unit'], require('~/assets/user-tank.png'));
 
     const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
@@ -70,7 +69,7 @@ export class WorldBootstrapper {
 
     const aiTankInputComponent = new AiTankInputComponent();
     const aiTankBasicPhysicComponent = new BasicPhysicComponent(aiTankJson.speed);
-    const aiTankLogicComponent = new AiTankLogicComponent();
+    const aiTankLogicComponent = new TankLogicComponent(EventTypes.AiTankKilled);
     const aiTankGraphicComponent = new ImgGraphicComponent(aiTankJson.width, aiTankJson.height, settings.pxPerCoord, field, ['unit'], require('~/assets/ai-tank.png'));
 
     const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);

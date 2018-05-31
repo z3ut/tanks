@@ -12,8 +12,6 @@ import { ShellInputComponent } from '../shell/shell-input-component';
 
 export interface FireCommandOptions {
   direction: Direction;
-  x: number;
-  y: number;
   world: World;
 }
 
