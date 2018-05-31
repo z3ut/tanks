@@ -21,7 +21,7 @@ export class GameStatusLogicComponent implements LogicComponent {
         this.isUserTankKilled = true;
         break;
       case EventTypes.PhoenixKilled:
-        this.isUserTankKilled = true;
+        this.isPhoenixKilled = true;
         break;
       case EventTypes.AiTankKilled:
         this.numberOfEnemiesKilled++;
