@@ -6,7 +6,6 @@ import { Clonable } from '../core/clonable';
 
 export class PhoenixLogicComponent implements LogicComponent {
 
-  
   private isHitted: boolean;
 
   constructor() {
@@ -38,8 +37,7 @@ export class PhoenixLogicComponent implements LogicComponent {
   }
 
   private getHit(world: World) {
-    alert('game over');
-    world.sendEvent(EventTypes.GameOver);
+    world.sendEvent(EventTypes.PhoenixKilled);
     this.isHitted = false;
   }
 }

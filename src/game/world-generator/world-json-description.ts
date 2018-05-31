@@ -9,6 +9,9 @@ export interface WorldJsonDescription {
     startY: number,
     startDirection: Direction
   },
+  game: {
+    enemiesToKillForWin: number
+  },
   gameObjects: {
     walls: {
       brick: {

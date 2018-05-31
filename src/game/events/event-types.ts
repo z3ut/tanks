@@ -5,5 +5,6 @@ export enum EventTypes {
   Collision,
   AiTankKilled,
   UserTankKilled,
+  PhoenixKilled,
   GameOver
 }

@@ -12,6 +12,7 @@ import { PhoenixLogicComponent } from "../phoenix/phoenix-logic-component";
 import { EventTypes } from "../events/event-types";
 import { WorldJsonDescription } from "./world-json-description";
 import { TankLogicComponent } from "../tank/tank-logic-component";
+import { GameStatusLogicComponent } from "../game-status/game-status-logic-component";
 
 const worldJson = require('./worlds/world_1.json') as WorldJsonDescription;
 
@@ -47,6 +48,9 @@ export class WorldBootstrapper {
 
     world.gameObjects.push(userTank);
 
+    const gameStatusLogicComponent = new GameStatusLogicComponent(worldJson.game.enemiesToKillForWin);
+    const gameStatus = new GameObject(null, gameStatusLogicComponent, null, null);
+    world.gameObjects.push(gameStatus);
 
     worldJson.gameObjects.walls.brick.forEach(brickWallJson => {
       const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-brick.png')));

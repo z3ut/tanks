@@ -6,6 +6,9 @@
     "startY": 20,
     "startDirection": "Top"
   },
+  "game": {
+    "enemiesToKillForWin": 20
+  },
   "gameObjects": {
     "walls": {
       "brick": [
