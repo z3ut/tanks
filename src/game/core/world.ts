@@ -20,23 +20,23 @@ export class World {
       rightX: this.width,
       bottomY: this.height,
       leftX: 0
-    }
+    };
   }
 
   update() {
-    for (let g of this.gameObjects) {
+    for (const g of this.gameObjects) {
       g.update(this);
     }
   }
 
   render() {
-    for (let g of this.gameObjects) {
+    for (const g of this.gameObjects) {
       g.render();
     }
   }
 
   findCollision(boundaries: Boundaries, gameObject?: GameObject): GameObject {
-    for (let g of this.physicalGameObjects) {
+    for (const g of this.physicalGameObjects) {
       if (isCollided(boundaries, g.boundaries) && gameObject !== g) {
         return g;
       }
@@ -49,7 +49,7 @@ export class World {
   }
 
   sendEvent(type: EventTypes, options?: any) {
-    for (let g of this.gameObjects) {
+    for (const g of this.gameObjects) {
       g.handleEvent(type, options);
     }
   }

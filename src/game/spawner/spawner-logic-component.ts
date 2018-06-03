@@ -20,7 +20,8 @@ export class SpawnerLogicComponent implements LogicComponent {
   }
 
   constructor(private maxNumberOfSpawned: number, private minimumSpawnCycle: number,
-    private maxSpawnCycle: number, private spawnKilledEventType: EventTypes, private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
+    private maxSpawnCycle: number, private spawnKilledEventType: EventTypes,
+    private spawn: Clonable<GameObject>, private spawnAreas: SpawnArea[]) {
 
   }
 
@@ -52,7 +53,7 @@ export class SpawnerLogicComponent implements LogicComponent {
     }
 
     if (this.updatesTillNextSpawn === 0) {
-      for (let s of this.spawnAreasRandomOrder) {
+      for (const s of this.spawnAreasRandomOrder) {
         if (world.findCollision(s.boundaries) == null) {
           this.spawnGameObject(world, s.x, s.y, s.direction);
           this.updatesTillNextSpawn = -1;

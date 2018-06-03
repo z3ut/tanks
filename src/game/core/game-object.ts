@@ -16,7 +16,6 @@ export class GameObject implements Clonable<GameObject> {
   height: number;
   direction: Direction;
   isNotPhysical: boolean;
-
   isDestroyed: boolean;
 
   get boundaries(): Boundaries {
