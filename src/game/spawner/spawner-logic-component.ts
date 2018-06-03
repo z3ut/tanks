@@ -43,7 +43,8 @@ export class SpawnerLogicComponent implements LogicComponent {
     }
 
     if (this.updatesTillNextSpawn < 0) {
-      this.updatesTillNextSpawn = getWholeNumberInRange(this.minimumSpawnCycle, this.maxSpawnCycle);
+      this.updatesTillNextSpawn = getWholeNumberInRange(
+        this.minimumSpawnCycle, this.maxSpawnCycle);
       return;
     }
 
@@ -70,7 +71,8 @@ export class SpawnerLogicComponent implements LogicComponent {
 
   clone(): LogicComponent {
     return new SpawnerLogicComponent(this.maxNumberOfSpawned,
-      this.minimumSpawnCycle, this.maxSpawnCycle, this.spawnKilledEventType, this.spawn, this.spawnAreas);
+      this.minimumSpawnCycle, this.maxSpawnCycle,
+      this.spawnKilledEventType, this.spawn, this.spawnAreas);
   }
 
   private spawnGameObject(world: World, x: number, y: number, direction: Direction) {

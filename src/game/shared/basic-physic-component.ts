@@ -41,7 +41,11 @@ export class BasicPhysicComponent implements PhysicComponent {
   }
 
   private move(gameObject: GameObject, moveEvent: MoveEvent, world: World) {
-    moveCommand.do(gameObject, { direction: moveEvent.direction, distance: this.speed, world  });
+    moveCommand.do(gameObject, {
+      direction: moveEvent.direction,
+      distance: this.speed,
+      world
+    });
     this.movingOptions = null;
   }
 }

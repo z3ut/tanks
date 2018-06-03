@@ -6,7 +6,9 @@ export class BasicGraphicComponent implements GraphicComponent {
   private isInited = false;
   private unit: HTMLDivElement;
 
-  constructor(private width: number, private height: number, private pxPerCoord: number, private field: Element, private cssClasses: string[]) {
+  constructor(private width: number, private height: number,
+    private pxPerCoord: number, private field: Element,
+    private cssClasses: string[]) {
   }
 
   update(gameObject: GameObject) {
@@ -25,7 +27,8 @@ export class BasicGraphicComponent implements GraphicComponent {
   }
 
   clone(): GraphicComponent {
-    return new BasicGraphicComponent(this.width, this.height, this.pxPerCoord, this.field, this.cssClasses);
+    return new BasicGraphicComponent(this.width, this.height,
+      this.pxPerCoord, this.field, this.cssClasses);
   }
 
   init(gameObject: GameObject) {

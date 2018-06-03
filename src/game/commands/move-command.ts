@@ -21,7 +21,8 @@ export class MoveCommand implements Command {
     const startX = gameObject.x;
     const startY = gameObject.y;
 
-    const { x: moveX, y: moveY } = calculateMovePositon(gameObject.x, gameObject.y, gameObject.direction, options.distance);
+    const { x: moveX, y: moveY } = calculateMovePositon(gameObject.x,
+      gameObject.y, gameObject.direction, options.distance);
 
     const previousX = startX;
     const previousY = startY;
@@ -32,13 +33,17 @@ export class MoveCommand implements Command {
       return;
     }
 
-    for (let deltaX = 0; Math.abs(deltaX) <= Math.abs(moveX - startX); deltaX += (moveX - startX > 0 ? 1 : -1)) {
-      for (let deltaY = 0; Math.abs(deltaY) <= Math.abs(moveY - startY); deltaY += (moveY - startY > 0 ? 1 : -1)) {
+    const xStep = moveX - startX > 0 ? 1 : -1;
+    const yStep = moveY - startY > 0 ? 1 : -1;
+
+    for (let deltaX = 0; Math.abs(deltaX) <= Math.abs(moveX - startX); deltaX += xStep) {
+      for (let deltaY = 0; Math.abs(deltaY) <= Math.abs(moveY - startY); deltaY += yStep) {
         gameObject.x = startX + deltaX;
         gameObject.y = startY + deltaY;
 
         if (!this.isValidPosition(options.world, gameObject.boundaries, gameObject)) {
-          const collision = options.world.findCollision(gameObject.boundaries, gameObject);
+          const collision = options.world.findCollision(
+            gameObject.boundaries, gameObject);
 
           gameObject.x = previousX;
           gameObject.y = previousY;

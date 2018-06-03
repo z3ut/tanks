@@ -36,9 +36,12 @@ export class WorldBootstrapper {
     const userTankInputComponent = new UserTankInputComponent();
     const userTankBasicPhysicComponent = new BasicPhysicComponent(userTankJson.speed);
     const userTankLogicComponent = new TankLogicComponent(EventTypes.UserTankKilled);
-    const userTankGraphicComponent = new ImgGraphicComponent(userTankJson.width, userTankJson.height, settings.pxPerCoord, field, ['unit'], require('~/assets/user-tank.png'));
+    const userTankGraphicComponent = new ImgGraphicComponent(userTankJson.width,
+      userTankJson.height, settings.pxPerCoord, field, ['unit'],
+      require('~/assets/user-tank.png'));
 
-    const userTank = new GameObject(userTankInputComponent, userTankLogicComponent, userTankBasicPhysicComponent, userTankGraphicComponent);
+    const userTank = new GameObject(userTankInputComponent, userTankLogicComponent,
+      userTankBasicPhysicComponent, userTankGraphicComponent);
     userTank.width = userTankJson.width;
     userTank.height = userTankJson.height;
 
@@ -53,7 +56,9 @@ export class WorldBootstrapper {
     world.gameObjects.push(gameStatus);
 
     worldJson.gameObjects.walls.brick.forEach(brickWallJson => {
-      const brickWall = new GameObject(null, new BrickWallLogicComponent(), null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-brick.png')));
+      const brickWall = new GameObject(null, new BrickWallLogicComponent(), null,
+      new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
+      require('~/assets/wall-brick.png')));
       brickWall.x = brickWallJson.x;
       brickWall.y = brickWallJson.y;
       brickWall.width = 1;
@@ -62,7 +67,9 @@ export class WorldBootstrapper {
     });
 
     worldJson.gameObjects.walls.steel.forEach(steelWallJson => {
-      const steelWall = new GameObject(null, null, null, new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'], require('~/assets/wall-steel.png')));
+      const steelWall = new GameObject(null, null, null,
+        new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
+          require('~/assets/wall-steel.png')));
       steelWall.x = steelWallJson.x;
       steelWall.y = steelWallJson.y;
       steelWall.width = 1;
@@ -74,18 +81,25 @@ export class WorldBootstrapper {
     const aiTankInputComponent = new AiTankInputComponent();
     const aiTankBasicPhysicComponent = new BasicPhysicComponent(aiTankJson.speed);
     const aiTankLogicComponent = new TankLogicComponent(EventTypes.AiTankKilled);
-    const aiTankGraphicComponent = new ImgGraphicComponent(aiTankJson.width, aiTankJson.height, settings.pxPerCoord, field, ['unit'], require('~/assets/ai-tank.png'));
+    const aiTankGraphicComponent = new ImgGraphicComponent(aiTankJson.width, aiTankJson.height,
+      settings.pxPerCoord, field, ['unit'], require('~/assets/ai-tank.png'));
 
-    const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent, aiTankBasicPhysicComponent, aiTankGraphicComponent);
+    const aiTank = new GameObject(aiTankInputComponent, aiTankLogicComponent,
+      aiTankBasicPhysicComponent, aiTankGraphicComponent);
     aiTank.width = aiTankJson.width;
     aiTank.height = aiTankJson.height;
 
 
-    const spawner = new GameObject(null, new SpawnerLogicComponent(worldJson.gameObjects.tankSpawns.maxTanksCountSimultaniously, 20, 50, EventTypes.AiTankKilled, aiTank, worldJson.gameObjects.tankSpawns.areas), null, null);
+    const spawnerLogicComponent = new SpawnerLogicComponent(
+      worldJson.gameObjects.tankSpawns.maxTanksCountSimultaniously, 20, 50,
+      EventTypes.AiTankKilled, aiTank, worldJson.gameObjects.tankSpawns.areas);
+    const spawner = new GameObject(null, spawnerLogicComponent, null, null);
     spawner.isNotPhysical = true;
     world.gameObjects.push(spawner);
 
-    const phoenix = new GameObject(null, new PhoenixLogicComponent(), null, new ImgGraphicComponent(phoenixJson.width, phoenixJson.height, settings.pxPerCoord, field, ['unit'], require('~/assets/phoenix.png')));
+    const phoenix = new GameObject(null, new PhoenixLogicComponent(), null,
+      new ImgGraphicComponent(phoenixJson.width, phoenixJson.height,
+        settings.pxPerCoord, field, ['unit'], require('~/assets/phoenix.png')));
     phoenix.x = worldJson.gameObjects.phoenix.x;
     phoenix.y = worldJson.gameObjects.phoenix.y;
     phoenix.width = phoenixJson.width;

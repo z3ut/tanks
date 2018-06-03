@@ -27,7 +27,8 @@ export class ImgGraphicComponent implements GraphicComponent {
   }
 
   clone(): GraphicComponent {
-    return new ImgGraphicComponent(this.width, this.height, this.pxPerCoord, this.field, this.cssClasses, this.src);
+    return new ImgGraphicComponent(this.width, this.height,
+      this.pxPerCoord, this.field, this.cssClasses, this.src);
   }
 
   init(gameObject: GameObject) {
