@@ -15,7 +15,7 @@ export class SpawnerLogicComponent implements LogicComponent {
 
   private updatesTillNextSpawn = -1;
 
-  private get spawnAreasRandomOrder(){
+  private get spawnAreasRandomOrder() {
     return this.spawnAreas.sort(() => .5 - Math.random());
   }
 
@@ -59,7 +59,7 @@ export class SpawnerLogicComponent implements LogicComponent {
           break;
         }
       }
-      
+
       return;
     }
   }

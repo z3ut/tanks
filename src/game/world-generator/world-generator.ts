@@ -1,5 +1,5 @@
-import { WorldDescription } from "./world-description";
-import { WorldBootstrapper } from "./world-bootstrapper";
+import { WorldDescription } from './world-description';
+import { WorldBootstrapper } from './world-bootstrapper';
 
 export class WorldGenerator {
 

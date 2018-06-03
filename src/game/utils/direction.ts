@@ -1,4 +1,4 @@
-import { Direction } from "../core/direction";
+import { Direction } from '../core/direction';
 
 export function directionToDegree(direction: Direction) {
   switch (direction) {

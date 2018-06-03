@@ -14,7 +14,7 @@ export class UserTankInputComponent implements InputComponent {
   private keyCodesFire = [ 32 ];
 
   constructor() {
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', event => {
       this.lastKeyCode = event.keyCode;
     });
   }

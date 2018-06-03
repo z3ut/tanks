@@ -1,9 +1,10 @@
-import { Direction } from "../core/direction";
-import { Boundaries } from "../core/boundaries";
+import { Direction } from '../core/direction';
+import { Boundaries } from '../core/boundaries';
 
 export function calculateMovePositon(x: number, y: number,
     direction: Direction, distance: number): { x: number, y: number } {
-  let moveX, moveY;
+  let moveX;
+  let moveY;
 
   switch (direction) {
     case Direction.Top:
@@ -29,7 +30,8 @@ export function calculateMovePositon(x: number, y: number,
 
 export function calculatePointOnBoundaries(boundaries: Boundaries,
     direction: Direction): { x: number, y: number } {
-  let pointX, pointY;
+  let pointX;
+  let pointY;
 
   switch (direction) {
     case Direction.Top:

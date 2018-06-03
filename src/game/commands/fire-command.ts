@@ -20,9 +20,9 @@ export class FireCommand implements Command {
     const shellInputComponent = new ShellInputComponent(options.direction);
     const shellBasicPhysicComponent = new BasicPhysicComponent(settings.shellSpeed);
     const shellLogic = new ShellLogicComponent(settings.shellSpeed, gameObject.direction);
-    const shellGraphic = new ImgGraphicComponent(settings.shellWidth, settings.shellHeight, settings.pxPerCoord, document.querySelector('[data-field]'), ['unit'], require('~/assets/shell.png'))
+    const shellGraphic = new ImgGraphicComponent(settings.shellWidth, settings.shellHeight, settings.pxPerCoord, document.querySelector('[data-field]'), ['unit'], require('~/assets/shell.png'));
     const shell = new GameObject(shellInputComponent, shellLogic, shellBasicPhysicComponent, shellGraphic);
-    
+
     const { x: shellX, y: shellY } = calculatePointOnBoundaries(gameObject.boundaries, gameObject.direction);
 
     shell.x = shellX;

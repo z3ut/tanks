@@ -1,7 +1,7 @@
-import { AiTankState } from "./ai-tank-state";
-import { GameObject } from "../../core/game-object";
-import { AiTankInputComponent } from "../ai-tank-input-component";
-import { getWholeNumberUnder } from "../../utils/math-utils";
+import { AiTankState } from './ai-tank-state';
+import { GameObject } from '../../core/game-object';
+import { AiTankInputComponent } from '../ai-tank-input-component';
+import { getWholeNumberUnder } from '../../utils/math-utils';
 
 export class AiTankIdleState implements AiTankState {
 

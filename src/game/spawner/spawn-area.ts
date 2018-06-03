@@ -1,5 +1,5 @@
-import { Boundaries } from "../core/boundaries";
-import { Direction } from "../core/direction";
+import { Boundaries } from '../core/boundaries';
+import { Direction } from '../core/direction';
 
 export interface SpawnArea {
   x: number;

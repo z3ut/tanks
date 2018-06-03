@@ -1,5 +1,5 @@
-import { Direction } from "../core/direction";
-import { Boundaries } from "../core/boundaries";
+import { Direction } from '../core/direction';
+import { Boundaries } from '../core/boundaries';
 
 export interface WorldJsonDescription {
   field: {
@@ -8,10 +8,10 @@ export interface WorldJsonDescription {
     startX: number,
     startY: number,
     startDirection: Direction
-  },
+  };
   game: {
     enemiesToKillForWin: number
-  },
+  };
   gameObjects: {
     walls: {
       brick: {
@@ -36,5 +36,5 @@ export interface WorldJsonDescription {
       x: number,
       y: number
     }
-  }
+  };
 }

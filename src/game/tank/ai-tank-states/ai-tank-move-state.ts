@@ -1,9 +1,9 @@
-import { AiTankState } from "./ai-tank-state";
-import { GameObject } from "../../core/game-object";
-import { AiTankInputComponent } from "../ai-tank-input-component";
-import { Direction } from "../../core/direction";
-import { EventTypes } from "../../events/event-types";
-import { getWholeNumberUnder } from "../../utils/math-utils";
+import { AiTankState } from './ai-tank-state';
+import { GameObject } from '../../core/game-object';
+import { AiTankInputComponent } from '../ai-tank-input-component';
+import { Direction } from '../../core/direction';
+import { EventTypes } from '../../events/event-types';
+import { getWholeNumberUnder } from '../../utils/math-utils';
 
 export class AiTankMoveState implements AiTankState {
 
@@ -45,7 +45,7 @@ export class AiTankMoveState implements AiTankState {
 
     if (this.numberOfCurrentUpdates < this.updateSteps) {
       this.numberOfCurrentUpdates++;
-      gameObject.handleEvent(EventTypes.Move, { direction:this.direction });
+      gameObject.handleEvent(EventTypes.Move, { direction: this.direction });
       return;
     }
 

@@ -10,18 +10,6 @@ import { Clonable } from './clonable';
 
 export class GameObject implements Clonable<GameObject> {
 
-  clone(): GameObject {
-    const gameObject = new GameObject(this.inputComponent.clone(), this.logicComponent.clone(),
-      this.physicComponent.clone(), this.graphicComponent.clone());
-    gameObject.x = this.x;
-    gameObject.y = this.y;
-    gameObject.width = this.width;
-    gameObject.height = this.height;
-    gameObject.direction = this.direction;
-    gameObject.isNotPhysical = this.isNotPhysical;
-    return gameObject;
-  }
-
   x: number;
   y: number;
   width: number;
@@ -36,8 +24,8 @@ export class GameObject implements Clonable<GameObject> {
       topY: this.y - (this.height - 1) / 2,
       rightX: this.x + (this.width - 1) / 2,
       bottomY: this.y + (this.height - 1) / 2,
-      leftX: this.x - (this.width -1 )/ 2
-    }
+      leftX: this.x - (this.width - 1 ) / 2
+    };
   }
 
   constructor(private inputComponent: InputComponent,
@@ -45,6 +33,18 @@ export class GameObject implements Clonable<GameObject> {
     private physicComponent: PhysicComponent,
     private graphicComponent: GraphicComponent) {
 
+  }
+
+  clone(): GameObject {
+    const gameObject = new GameObject(this.inputComponent.clone(), this.logicComponent.clone(),
+      this.physicComponent.clone(), this.graphicComponent.clone());
+    gameObject.x = this.x;
+    gameObject.y = this.y;
+    gameObject.width = this.width;
+    gameObject.height = this.height;
+    gameObject.direction = this.direction;
+    gameObject.isNotPhysical = this.isNotPhysical;
+    return gameObject;
   }
 
   init(world: World) {
@@ -72,7 +72,7 @@ export class GameObject implements Clonable<GameObject> {
     this.logicComponent && this.logicComponent.destroy(this, world);
     this.physicComponent && this.physicComponent.destroy(this, world);
     this.graphicComponent && this.graphicComponent.destroy(this);
-    world.gameObjects = world.gameObjects.filter(g => g != this);
+    world.gameObjects = world.gameObjects.filter(g => g !== this);
     this.isDestroyed = true;
   }
 }

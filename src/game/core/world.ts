@@ -37,7 +37,7 @@ export class World {
 
   findCollision(boundaries: Boundaries, gameObject?: GameObject): GameObject {
     for (let g of this.physicalGameObjects) {
-      if (isCollided(boundaries, g.boundaries) && gameObject != g) {
+      if (isCollided(boundaries, g.boundaries) && gameObject !== g) {
         return g;
       }
     }

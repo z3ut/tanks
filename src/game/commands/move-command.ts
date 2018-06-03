@@ -23,8 +23,8 @@ export class MoveCommand implements Command {
 
     const { x: moveX, y: moveY } = calculateMovePositon(gameObject.x, gameObject.y, gameObject.direction, options.distance);
 
-    let previousX = startX;
-    let previousY = startY;
+    const previousX = startX;
+    const previousY = startY;
 
     if (options.isIgnoreObjects) {
       gameObject.x = moveX;
@@ -38,7 +38,7 @@ export class MoveCommand implements Command {
         gameObject.y = startY + deltaY;
 
         if (!this.isValidPosition(options.world, gameObject.boundaries, gameObject)) {
-          const collision = options.world.findCollision(gameObject.boundaries, gameObject)
+          const collision = options.world.findCollision(gameObject.boundaries, gameObject);
 
           gameObject.x = previousX;
           gameObject.y = previousY;

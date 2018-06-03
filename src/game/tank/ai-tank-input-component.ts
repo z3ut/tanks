@@ -39,7 +39,7 @@ export class AiTankInputComponent implements InputComponent {
     const randomHeight = getWholeNumberUnder(this.totalWeights);
     let currentWeightSum = 0;
     for (let s of this.states) {
-      currentWeightSum += s.weight
+      currentWeightSum += s.weight;
       if (currentWeightSum >= randomHeight) {
         this.currentState = s.state;
         return;

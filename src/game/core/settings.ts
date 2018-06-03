@@ -12,4 +12,4 @@ export const settings = {
   shellWidth: 1,
   shellHeight: 1,
   shellSpeed: 2,
-}
+};

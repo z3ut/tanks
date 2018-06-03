@@ -1,18 +1,18 @@
-import { World } from "../core/world";
-import { settings } from "../core/settings";
-import { UserTankInputComponent } from "../tank/user-tank-input-component";
-import { BasicPhysicComponent } from "../shared/basic-physic-component";
-import { ImgGraphicComponent } from "../shared/img-graphic-components";
-import { GameObject } from "../core/game-object";
-import { Direction } from "../core/direction";
-import { AiTankInputComponent } from "../tank/ai-tank-input-component";
-import { BrickWallLogicComponent } from "../wall/brick-wall-logic-component";
-import { SpawnerLogicComponent } from "../spawner/spawner-logic-component";
-import { PhoenixLogicComponent } from "../phoenix/phoenix-logic-component";
-import { EventTypes } from "../events/event-types";
-import { WorldJsonDescription } from "./world-json-description";
-import { TankLogicComponent } from "../tank/tank-logic-component";
-import { GameStatusLogicComponent } from "../game-status/game-status-logic-component";
+import { World } from '../core/world';
+import { settings } from '../core/settings';
+import { UserTankInputComponent } from '../tank/user-tank-input-component';
+import { BasicPhysicComponent } from '../shared/basic-physic-component';
+import { ImgGraphicComponent } from '../shared/img-graphic-components';
+import { GameObject } from '../core/game-object';
+import { Direction } from '../core/direction';
+import { AiTankInputComponent } from '../tank/ai-tank-input-component';
+import { BrickWallLogicComponent } from '../wall/brick-wall-logic-component';
+import { SpawnerLogicComponent } from '../spawner/spawner-logic-component';
+import { PhoenixLogicComponent } from '../phoenix/phoenix-logic-component';
+import { EventTypes } from '../events/event-types';
+import { WorldJsonDescription } from './world-json-description';
+import { TankLogicComponent } from '../tank/tank-logic-component';
+import { GameStatusLogicComponent } from '../game-status/game-status-logic-component';
 
 const worldJson = require('./worlds/world_1.json') as WorldJsonDescription;
 
