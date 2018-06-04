@@ -14,14 +14,8 @@ export interface WorldJsonDescription {
   };
   gameObjects: {
     walls: {
-      brick: {
-        x: number,
-        y: number
-      }[],
-      steel: {
-        x: number,
-        y: number
-      }[]
+      brick: Boundaries[],
+      steel: Boundaries[]
     },
     tankSpawns: {
       maxTanksCountSimultaniously: number,

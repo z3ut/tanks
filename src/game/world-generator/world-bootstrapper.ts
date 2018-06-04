@@ -56,25 +56,33 @@ export class WorldBootstrapper {
     world.gameObjects.push(gameStatus);
 
     worldJson.gameObjects.walls.brick.forEach(brickWallJson => {
-      const brickWall = new GameObject(null, new BrickWallLogicComponent(), null,
-      new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
-      require('~/assets/wall-brick.png')));
-      brickWall.x = brickWallJson.x;
-      brickWall.y = brickWallJson.y;
-      brickWall.width = 1;
-      brickWall.height = 1;
-      world.gameObjects.push(brickWall);
+      for (let x = brickWallJson.leftX; x <= brickWallJson.rightX; x++) {
+        for (let y = brickWallJson.topY; y <= brickWallJson.bottomY; y++) {
+          const brickWall = new GameObject(null, new BrickWallLogicComponent(), null,
+          new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
+          require('~/assets/wall-brick.png')));
+          brickWall.x = x;
+          brickWall.y = y;
+          brickWall.width = 1;
+          brickWall.height = 1;
+          world.gameObjects.push(brickWall);
+        }
+      }
     });
 
     worldJson.gameObjects.walls.steel.forEach(steelWallJson => {
-      const steelWall = new GameObject(null, null, null,
-        new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
-          require('~/assets/wall-steel.png')));
-      steelWall.x = steelWallJson.x;
-      steelWall.y = steelWallJson.y;
-      steelWall.width = 1;
-      steelWall.height = 1;
-      world.gameObjects.push(steelWall);
+      for (let x = steelWallJson.leftX; x <= steelWallJson.rightX; x++) {
+        for (let y = steelWallJson.topY; y <= steelWallJson.bottomY; y++) {
+          const steelWall = new GameObject(null, null, null,
+            new ImgGraphicComponent(1, 1, settings.pxPerCoord, field, ['unit'],
+              require('~/assets/wall-steel.png')));
+          steelWall.x = x;
+          steelWall.y = y;
+          steelWall.width = 1;
+          steelWall.height = 1;
+          world.gameObjects.push(steelWall);
+        }
+      }
     });
 
 

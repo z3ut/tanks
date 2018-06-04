@@ -2,8 +2,8 @@
   "field": {
     "width": 40,
     "height": 40,
-    "startX": 20,
-    "startY": 20,
+    "startX": 10,
+    "startY": 35,
     "startDirection": "Top"
   },
   "game": {
@@ -13,14 +13,30 @@
     "walls": {
       "brick": [
         {
-          "x": 1,
-          "y": 1
+          "topY": 34,
+          "rightX": 17,
+          "bottomY": 40,
+          "leftX": 16
+        },
+        {
+          "topY": 34,
+          "rightX": 22,
+          "bottomY": 35,
+          "leftX": 18
+        },
+        {
+          "topY": 34,
+          "rightX": 24,
+          "bottomY": 40,
+          "leftX": 23
         }
       ],
       "steel": [
         {
-          "x": 2,
-          "y": 1
+          "topY": 1,
+          "rightX": 2,
+          "bottomY": 1,
+          "leftX": 2
         }
       ]
     },
@@ -41,8 +57,8 @@
       ]
     },
     "phoenix": {
-      "x": 30,
-      "y": 30
+      "x": 20,
+      "y": 38
     }
   }
 }
