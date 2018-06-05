@@ -56,6 +56,5 @@ export class GameStatusLogicComponent implements LogicComponent {
       result,
       enemiesKilled: this.numberOfEnemiesKilled
     } as GameOverEvent);
-    alert('game over. tank killed: ' + this.numberOfEnemiesKilled);
   }
 }

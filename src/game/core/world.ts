@@ -2,8 +2,14 @@ import { GameObject } from './game-object';
 import { EventTypes } from '../events/event-types';
 import { isCollided, isInside, isIntersect } from '../utils/collision';
 import { Boundaries } from './boundaries';
+import { GameOverType } from '../events/game-over-type';
+import { GameOverEvent } from '../events/game-over-event';
 
 export class World {
+
+  isGameOver: boolean;
+  gameResult: GameOverType;
+  enemiesKilled: number;
 
   width: number;
   height: number;
@@ -49,8 +55,22 @@ export class World {
   }
 
   sendEvent(type: EventTypes, options?: any) {
+    this.handleEvent(type, options);
+
     for (const g of this.gameObjects) {
       g.handleEvent(type, options);
+    }
+  }
+
+  private handleEvent(type: EventTypes, options?: any) {
+    switch (type) {
+      case EventTypes.GameOver:
+        const gameOverOptions = options as GameOverEvent;
+        this.isGameOver = true;
+        this.gameResult = gameOverOptions.result;
+        this.enemiesKilled = gameOverOptions.enemiesKilled;
+        break;
+      default:
     }
   }
 }
