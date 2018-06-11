@@ -2,7 +2,6 @@ import { LogicComponent } from '../core/logic-component';
 import { World } from '../core/world';
 import { GameObject } from '../core/game-object';
 import { EventTypes } from '../events/event-types';
-import { Clonable } from '../core/clonable';
 import { GameOverEvent } from '../events/game-over-event';
 import { GameOverType } from '../events/game-over-type';
 
@@ -34,6 +33,7 @@ export class GameStatusLogicComponent implements LogicComponent {
   }
 
   update(gameObject: GameObject, world: World) {
+    world.enemiesKilled = this.numberOfEnemiesKilled;
     if (this.isUserTankKilled || this.isPhoenixKilled) {
       this.gameOver(world, GameOverType.Lose);
     }
@@ -52,6 +52,10 @@ export class GameStatusLogicComponent implements LogicComponent {
   }
 
   gameOver(world: World, result: GameOverType) {
+    world.isGameOver = true;
+    world.gameResult = result;
+    world.enemiesKilled = this.numberOfEnemiesKilled;
+
     world.sendEvent(EventTypes.GameOver, {
       result,
       enemiesKilled: this.numberOfEnemiesKilled
