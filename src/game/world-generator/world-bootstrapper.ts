@@ -4,7 +4,6 @@ import { UserTankInputComponent } from '../tank/user-tank-input-component';
 import { BasicPhysicComponent } from '../shared/basic-physic-component';
 import { ImgGraphicComponent } from '../shared/img-graphic-components';
 import { GameObject } from '../core/game-object';
-import { Direction } from '../core/direction';
 import { AiTankInputComponent } from '../tank/ai-tank-input-component';
 import { BrickWallLogicComponent } from '../wall/brick-wall-logic-component';
 import { SpawnerLogicComponent } from '../spawner/spawner-logic-component';

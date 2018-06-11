@@ -2,8 +2,6 @@ import { LogicComponent } from '../core/logic-component';
 import { World } from '../core/world';
 import { GameObject } from '../core/game-object';
 import { EventTypes } from '../events/event-types';
-import { MoveEvent } from '../events/move-event';
-import { settings } from '../core/settings';
 import { Direction } from '../core/direction';
 import { Clonable } from '../core/clonable';
 import { SpawnArea } from './spawn-area';

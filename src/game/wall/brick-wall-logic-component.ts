@@ -2,9 +2,6 @@ import { LogicComponent } from '../core/logic-component';
 import { World } from '../core/world';
 import { GameObject } from '../core/game-object';
 import { EventTypes } from '../events/event-types';
-import { MoveEvent } from '../events/move-event';
-import { moveCommand } from '../commands/move-command';
-import { fireCommand } from '../commands/fire-command';
 
 export class BrickWallLogicComponent implements LogicComponent {
 

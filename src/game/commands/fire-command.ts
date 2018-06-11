@@ -6,7 +6,6 @@ import { ShellLogicComponent } from '../shell/shell-logic-component';
 import { settings } from '../core/settings';
 import { BasicPhysicComponent } from '../shared/basic-physic-component';
 import { calculatePointOnBoundaries } from '../utils/coords';
-import { BasicGraphicComponent } from '../shared/basic-graphic-component';
 import { ImgGraphicComponent } from '../shared/img-graphic-components';
 import { ShellInputComponent } from '../shell/shell-input-component';
 

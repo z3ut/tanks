@@ -1,5 +1,3 @@
-import { GameObject } from './core/game-object';
-import { World } from './core/world';
 import { settings } from './core/settings';
 import { WorldGenerator } from './world-generator/world-generator';
 import { GameOverType } from './events/game-over-type';

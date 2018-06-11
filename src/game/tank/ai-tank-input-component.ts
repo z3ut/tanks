@@ -1,7 +1,5 @@
 import { InputComponent } from '../core/input-component';
 import { GameObject } from '../core/game-object';
-import { EventTypes } from '../events/event-types';
-import { Direction } from '../core/direction';
 import { AiTankState } from './ai-tank-states/ai-tank-state';
 import { AiTankFireState } from './ai-tank-states/ai-tank-fire-state';
 import { AiTankIdleState } from './ai-tank-states/ai-tank-idle-state';

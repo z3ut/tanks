@@ -2,7 +2,6 @@ import { LogicComponent } from '../core/logic-component';
 import { World } from '../core/world';
 import { GameObject } from '../core/game-object';
 import { EventTypes } from '../events/event-types';
-import { Clonable } from '../core/clonable';
 
 export class PhoenixLogicComponent implements LogicComponent {
 
