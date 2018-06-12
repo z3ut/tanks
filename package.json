@@ -1,8 +1,7 @@
 {
   "name": "tanks",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Battle city clone",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html"
